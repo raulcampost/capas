@@ -21,4 +21,10 @@ public class PeliculaServiceImpl implements PeliculaService {
 		return pd.findAll();
 	}
 
+	@Override
+	public List<Pelicula> find(Integer codigo) {
+		// TODO Auto-generated method stub
+		return pd.find(codigo);
+	}
+
 }

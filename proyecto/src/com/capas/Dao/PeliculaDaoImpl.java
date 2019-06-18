@@ -28,4 +28,15 @@ public class PeliculaDaoImpl implements PeliculaDao {
 		return res;
 	}
 
+	@Override
+	public List<Pelicula> find(Integer codigo) throws DataAccessException {
+		// TODO Auto-generated method stub
+		StringBuffer sb = new StringBuffer(); 
+		sb.append("select * from public.pelicula where id_pelicula =:query1");
+		Query query = em.createNativeQuery(sb.toString(),Pelicula.class);
+		query.setParameter("query1", codigo);
+		List<Pelicula> res = query.getResultList();
+		return res;
+	}
+
 }

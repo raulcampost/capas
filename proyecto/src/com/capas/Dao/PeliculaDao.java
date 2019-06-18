@@ -9,4 +9,5 @@ import com.capas.domain.Pelicula;
 
 public interface PeliculaDao {
 	public List<Pelicula> findAll() throws DataAccessException;
+	public List<Pelicula> find(Integer codigo) throws DataAccessException;
 }

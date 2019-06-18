@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,59 +132,88 @@
 
 
 
-
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
-      
-        
-        
-         <section class="hero-area">
-        <div class="hero-post-slides owl-carousel">
-
-			<!-- Single Hero Post -->
-            <div class="single-hero-post bg-overlay">
-                <!-- Post Image -->
-                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/gl.jpg);"></div>
-                  <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <!-- Post Content -->
-                            <div class="hero-slides-content text-center">
-                                <h2>Plants exist in the weather and light rays that surround them</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ante nec ipsum iaculis, ac iaculis ipsum porttitor. Vivamus cursus nisl lectus, id mattis nisl lobortis eu. Duis diam augue, dapibus ut dolor at, mattis maximus dolor.</p>
-                                <div class="welcome-btn-group">
-                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
-                                    <a href="#" class="btn alazea-btn active">CONTACT US</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-        
-        
-        
-        
-        
+	<!-- ##### Hero Area Start ##### -->
+	    <section class="hero-area">
+	        <div class="hero-post-slides owl-carousel">
+			<c:forEach var="u" items="${pelicula}">
+				<!-- Single Hero Post -->
+	            <div class="single-hero-post bg-overlay">
+	                <!-- Post Image -->
+	                <div class="slide-img bg-img" style="background-image: url(${u.sportada});"></div>
+	            </div>
+			</c:forEach>
+	        </div>
+	    </section>
+	    <!-- ##### Hero Area End ##### -->
 
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Single Blog Post</li>
+                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/"><i class="fa fa-home"></i> Home</a></li>
+                            <c:forEach var="w" items="${pelicula}">
+                            	<li class="breadcrumb-item active" aria-current="page">${w.stitulo}</li>
+                            </c:forEach>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ##### Breadcrumb Area End ##### -->
+    <!-- ##### Breadcrumb Area End ##### -->   
+       
+
+
+	
+    <!-- ##### Service Area Start ##### -->
+    <section class="our-services-area bg-gray section-padding-100-0">
+        <c:forEach var="v" items="${pelicula}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>${v.stitulo}</h2>
+                        <p>${v.ssinopsis}</p>
+                        <p>Dirigido por: ${v.sdirector}</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+           
+            <div class="row justify-content-center">
+                <div class="col-4 col-lg-3">
+                    <div class="alazea-service-area mb-100">
+
+                        <!-- Single Service Area -->
+                        <div class="single-service-area d-flex align-items-center wow fadeInUp" data-wow-delay="400ms">
+                            <!-- Icon -->
+                            <div class="col-lg-12">
+                                <img src="${v.ssingular2}" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-5 col-lg-5">
+                    <div class="alazea-video-area bg-overlay mb-100">
+                        <img src="${v.sportada}" alt="">
+                        <a href="${v.svideo}" class="video-icon">
+                            <i class="fa fa-play" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+         </div>
+         </c:forEach>
+    </section>
+    <!-- ##### Service Area End ##### -->
+
 
 
               

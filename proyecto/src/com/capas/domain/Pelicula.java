@@ -22,6 +22,9 @@ public class Pelicula {
 	@Column(name="s_singular2")
 	public String ssingular2;
 	
+	@Column(name="s_video")
+	public String svideo;
+		
 	@Column(name="s_titulo")
 	public String stitulo;
 	
@@ -42,12 +45,13 @@ public class Pelicula {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pelicula(Integer id,String bn,String sg,String sg2,String titulo,String director,String sinopsis,Integer puestos,Boolean bandera) {
+	public Pelicula(Integer id,String bn,String sg,String sg2,String sv,String titulo,String director,String sinopsis,Integer puestos,Boolean bandera) {
 		// TODO Auto-generated constructor stub
 		this.idpelicula = id;
 		this.sportada = bn;
 		this.ssingular = sg;
 		this.ssingular2 = sg2;
+		this.svideo = sv;
 		this.stitulo = titulo;
 		this.sdirector = director;
 		this.ssinopsis = sinopsis;
@@ -67,6 +71,10 @@ public class Pelicula {
 	
 	public void setSsingular2(String ssingular2) {
 		this.ssingular2 = ssingular2;
+	}
+	
+	public void setSvideo(String svideo) {
+		this.svideo = svideo;
 	}
 	
 	public void setSportada(String sportada) {
@@ -110,6 +118,10 @@ public class Pelicula {
 	
 	public String getSsingular2() {
 		return ssingular2;
+	}
+	
+	public String getSvideo() {
+		return svideo;
 	}
 	
 	public String getStitulo() {

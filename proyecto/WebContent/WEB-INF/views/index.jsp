@@ -163,22 +163,23 @@
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
-                        <h2>LATEST NEWS</h2>
-                        <p>The breaking news about Gardening &amp; House plants</p>
+                        <h2>Cartelera.</h2>
+                        <p>Disfruta de tus estrenos aqui en cinema.</p>
                     </div>
                 </div>
             </div>
-
+            
+            
             <div class="row justify-content-center">
 			<c:forEach var="v" items="${pelicula}">
                 <!-- Single Blog Post Area -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-blog-post mb-100">
                         <div class="post-thumbnail mb-30">
-                            <a href="${pageContext.request.contextPath}/single"><img src="${v.ssingular}" alt=""></a>
+                            <a href="${pageContext.request.contextPath}/single?idpelicula=${v.idpelicula}"><img src="${v.ssingular}" alt=""></a>
                         </div>
                         <div class="post-content">
-                            <a href="${pageContext.request.contextPath}/single" class="post-title">
+                            <a href="${pageContext.request.contextPath}/single?idpelicula=${v.idpelicula}" class="post-title">
                                 <h5>${v.stitulo}</h5>
                             </a>
                             <div class="post-meta">
