@@ -8,5 +8,8 @@ import com.capas.domain.Pelicula;
 
 public interface PeliculaService {
 	public List<Pelicula> findAll();
+	public Pelicula findOne(Integer id);
+	public List<Pelicula> findByBseleccionTrue();
 	public List<Pelicula> find(Integer codigo);
+	
 }

@@ -22,7 +22,7 @@ public class MainController {
 	@RequestMapping("/")
 	public ModelAndView all() {
 		ModelAndView mav = new ModelAndView();
-		List<Pelicula> peliculas = ps.findAll();
+		List<Pelicula> peliculas = ps.findByBseleccionTrue();
 		mav.addObject("pelicula",peliculas);
 		mav.setViewName("index");
 		return mav;
@@ -42,7 +42,7 @@ public class MainController {
 	@RequestMapping("/single")
 	public ModelAndView single(@RequestParam("idpelicula") Integer idpelicula) {
 		ModelAndView mav = new ModelAndView();
-		List<Pelicula> pl = ps.find(idpelicula);
+		Pelicula pl = ps.findOne(idpelicula);
 		mav.addObject("pelicula",pl);
 		mav.setViewName("single");
 		return mav;

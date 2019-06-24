@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +20,9 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="resources/style2.css">
+    
+    
 
 </head>
 
@@ -137,13 +141,11 @@
 	<!-- ##### Hero Area Start ##### -->
 	    <section class="hero-area">
 	        <div class="hero-post-slides owl-carousel">
-			<c:forEach var="u" items="${pelicula}">
 				<!-- Single Hero Post -->
 	            <div class="single-hero-post bg-overlay">
 	                <!-- Post Image -->
-	                <div class="slide-img bg-img" style="background-image: url(${u.sportada});"></div>
+	                <div class="slide-img bg-img" style="background-image: url(${pelicula.sportada});"></div>
 	            </div>
-			</c:forEach>
 	        </div>
 	    </section>
 	    <!-- ##### Hero Area End ##### -->
@@ -154,9 +156,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/"><i class="fa fa-home"></i> Home</a></li>
-                            <c:forEach var="w" items="${pelicula}">
-                            	<li class="breadcrumb-item active" aria-current="page">${w.stitulo}</li>
-                            </c:forEach>
+                            <li class="breadcrumb-item active" aria-current="page">${pelicula.stitulo}</li>
                         </ol>
                     </nav>
                 </div>
@@ -170,15 +170,14 @@
 	
     <!-- ##### Service Area Start ##### -->
     <section class="our-services-area bg-gray section-padding-100-0">
-        <c:forEach var="v" items="${pelicula}">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
-                        <h2>${v.stitulo}</h2>
-                        <p>${v.ssinopsis}</p>
-                        <p>Dirigido por: ${v.sdirector}</p>
+                        <h2>${pelicula.stitulo}</h2>
+                        <p>${pelicula.ssinopsis}</p>
+                        <p>Dirigido por: ${pelicula.sdirector}</p>
                     </div>
                 </div>
             </div>
@@ -193,7 +192,7 @@
                         <div class="single-service-area d-flex align-items-center wow fadeInUp" data-wow-delay="400ms">
                             <!-- Icon -->
                             <div class="col-lg-12">
-                                <img src="${v.ssingular2}" alt="">
+                                <img src="${pelicula.ssingular2}" alt="">
                             </div>
                         </div>
 
@@ -202,92 +201,204 @@
 
                 <div class="col-5 col-lg-5">
                     <div class="alazea-video-area bg-overlay mb-100">
-                        <img src="${v.sportada}" alt="">
-                        <a href="${v.svideo}" class="video-icon">
+                        <img src="${pelicula.sportada}" alt="">
+                        <a href="${pelicula.svideo}" class="video-icon">
                             <i class="fa fa-play" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
             </div>
          </div>
-         </c:forEach>
     </section>
-    <!-- ##### Service Area End ##### -->
-
-
-
-              
+    <!-- ##### Service Area End ##### -->  
     
-    <!-- ##### Blog Content Area Start ##### -->
-    <section class="blog-content-area section-padding-0-100">
+    
+    
+    <!-- ##### Service Area Start ##### -->
+    <section class="about-us-area  section-padding-100-0">
         <div class="container">
-            <div class="row justify-content-center">
-                <!-- Blog Posts Area -->
-                <div class="col-12 col-md-8">
-                    <div class="blog-posts-area">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>Comprar ticket</h2>
+                    </div>
+                </div>
+            </div>
+            
+            
+           
+            <div class="row justify-content-center ">
+                <div class="col-sm-4">
+                    <div class="alazea-service-area mb-100">
+                    	<form:form id="form1" class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/">
 
-                        <!-- Post Details Area -->
-                        <div class="single-post-details-area">
-                            <div class="post-content">
-                                <h4 class="post-title">Garden designers across the country forecast ideas shaping the gardening world in 2018</h4>
-                                <div class="post-meta mb-30">
-                                    <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 19 Jun 2018</a>
-                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Mason Jenkins</a>
-                                </div>
-                                <div class="post-thumbnail mb-30">
-                                    <img src="resources/img/bg-img/35.jpg" alt="">
-                                </div>
-                                <p>Integer luctus diam ac scerisque consectetur. Vimus ottawas euismod nec lacus sit amet. Aenean interdus midu vitae, uttah mattis augue fermentum. Donec auctor massa orci, quis condimentum odio eleifended. Orci varius natoque penatibuset magnis discount parturient montes, nascetur ridiculus mus. Ut felis lectus, sagittis in turpis sit amet, ornare interdu ligula. Proin sed dolor eu nulla fermentum fermentum. Suspendisse eget mollis diam. Nulla non mauris et eros accumsan imperdit sed ut turpis. Ut aliquam et sapien at convallis. Integer eu porttitor lacus. Curabitur id aliquam mauris.</p>
-                                <div class="row mb-30">
-                                    <div class="col-lg-7">
-                                        <p>Nullam lectus elit, volutpat velo justo sit damet, tincidunt dapibus turpis. Vivamus idelit nec enim tristique blandit in sit down metunc. Maecenas accumsan nunc quis nisl porttitor varius sed luctus ligula. Aeneamana pellentesque enim eu magna vehicula suada.</p>
-                                        <p>Quisque suscipit elit sit ametz pellentesque scelerisque. Integer actioner cursu quam, estina portitor cant. Vestibulum luctus libero urna gamora scelerisque laoret. Quisque nect facilisis neque. Integer vitaer dapibus purus, fames turpis egestas. Nullam vulputa nisl tempus luctus.</p>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <img src="resources/img/bg-img/36.jpg" alt="">
-                                    </div>
-                                </div>
-                                <p>Mauris nisi arcu, consectetur convallis fringilla quis, posuere ac mauris. Ut in placerat lorem. Donec cursus malesuada nibhem, eget consectetur posuere sed. Suspendisse auctor nec diamet consectetur. Etiam ac maurised nisib tincidunt viverra. Sed nulla lacus, convallis vel nunc sed, fringilla venenatis neque.</p>
-                                <blockquote>
-                                    <div class="blockquote-text">
-                                        <h5>“If every plant and flower were found in all places, the charm of locality would not exist. Everything varies, and that gives the interest.”</h5>
-                                        <h5>Richard Jefferies</h5>
-                                    </div>
-                                </blockquote>
-                                <h4>Plant the love of the holy ones within your spirit.</h4>
-                                <p>Phasellus laoreet mattis ultrices. Integer ex sem, ultrices eu sem in, laoreet vehicula ligula. Phasellus quistor blandit salah convallis augue. Sed velot dictum sapient. In pulvinar libero turpis. Quisque facilisis bigbang consenti. Nullam bendumaz, massan consequat in gravida porttitor, aguet lacus condimentum mauris, id blandit quam augue eget mana. Etiam denim jeans lacus, nascetur auge bibendum vel pulvinar viverra, mattis sit amet mi. Mauris fringilla, ex vitae maximus fringilla, neque sapien maximus justo, cursus risus neque sed nibh. Donec at urna eros scelerisque non nibh sed.</p>
-                                <p>Cras porta tortor quis eros volutpat, at vehicula lectus posuere. Sed faucibus euismod nibh, necta auctor nunclear elementum non. Aliquam ut nulla efficitur tortor vestibulum pharetra inget nisl. Suspendisse eleifenden metus, vitae viverra dante volutpat quisto. Curabitur tator risus, sagittis a imperdiet sed, volutpat sit amet. Integer gravida leo sit amet pulvinar vehicula.</p>
-                            </div>
-                        </div>
-
-                        <!-- Post Tags & Share -->
-                        <div class="post-tags-share d-flex justify-content-between align-items-center">
-                            <!-- Tags -->
-                            <ol class="popular-tags d-flex align-items-center flex-wrap">
-                                <li><span>Tag:</span></li>
-                                <li><a href="#">PLANTS</a></li>
-                                <li><a href="#">CACTUS</a></li>
-                            </ol>
-                            <!-- Share -->
-                            <div class="post-share">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
+	                        <div class="form-group">
+	                            <label for="ticket" class="col-sm-12 control-label"><b>Cantidad de Pases:</b></label>
+	
+	                            <div class="col-sm-12">
+	                                <input id="ticket" type="number" class="form-control" name="ticket" path="ticket" min="0" min="15" value="0" required="" autofocus="">
+	                                <td><form:errors path="ticket" cssStyle="color: #ff0000;"/></td>
+	                            </div>
+	                        </div>
+	
+	                        <div class="form-group">
+	                            <div class="col-md-8 col-md-offset-4">
+	                                <button type="submit" class="btn btn-primary">
+	                                    Comprar
+	                                </button>
+	                            </div>
+	                        </div>
+	                    </form:form>
 
                     </div>
                 </div>
 
-
+                <div class="col-sm-8">
+                    <div class="alazea-service-area mb-100">
+                        <div class="theatre">
+  
+						  <div class="cinema-seats left">
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						     <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						     <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						  </div>
+						  
+						  
+						  
+						</div>
+                    </div>
+                </div>
             </div>
-        </div>
+         </div>
     </section>
-    <!-- ##### Blog Content Area End ##### -->
-    
-    
-    
+    <!-- ##### Service Area End ##### -->  
     
     
     
@@ -295,7 +406,7 @@
     
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);">
+    <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);margin-top:150px;">
         <!-- Main Footer Area -->
         <div class="main-footer-area">
             <div class="container">
@@ -403,9 +514,9 @@
                     <div class="col-12 col-md-6">
                         <div class="copywrite-text">
                             <p>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
                         </div>
                     </div>
                     <!-- Footer Nav -->
@@ -427,8 +538,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### All Javascript Files ##### -->
+    <script type="text/javascript" src="resources/js/butaca.js"></script>
     <!-- jQuery-2.2.4 js -->
     <script type="text/javascript" src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <!-- Popper js -->
     <script type="text/javascript" src="resources/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -437,6 +550,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script type="text/javascript" src="resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script type="text/javascript" src="resources/js/active.js"></script>
+    <script type="text/javascript" src="resources/script.js"></script>
+    
 </body>
 
 </html>
