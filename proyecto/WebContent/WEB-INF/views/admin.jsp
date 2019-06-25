@@ -31,128 +31,6 @@
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-
-        <!-- ***** Top Header Area ***** -->
-        <div class="top-header-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="top-header-content d-flex align-items-center justify-content-between">
-                            <!-- Top Header Content -->
-                            <div class="top-header-meta">
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: infodeercreative@gmail.com</span></a>
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +1 234 122 122</span></a>
-                            </div>
-
-                            <!-- Top Header Content -->
-                            <div class="top-header-meta d-flex">
-                                <!-- Language Dropdown -->
-                                <div class="language-dropdown">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">USA</a>
-                                            <a class="dropdown-item" href="#">UK</a>
-                                            <a class="dropdown-item" href="#">Bangla</a>
-                                            <a class="dropdown-item" href="#">Hindi</a>
-                                            <a class="dropdown-item" href="#">Spanish</a>
-                                            <a class="dropdown-item" href="#">Latin</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Login -->
-                                <div class="login">
-                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Sign out</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ***** Navbar Area ***** -->
-        <div class="alazea-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
-
-                        <!-- Nav Brand -->
-                        <a href="index.html" class="nav-brand"><img src="resources/img/core-img/cinema.png" width="200px" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Navbar Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="${pageContext.request.contextPath}/about">About</a></li>
-                                    <li><a href="#">Category</a>
-                                        <ul class="dropdown">
-                                            <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/about">About</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
-                                </ul>
-
-                                <!-- Search Icon -->
-                                <div id="searchIcon">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </div>
-
-                            </div>
-                            <!-- Navbar End -->
-                        </div>
-                    </nav>
-
-                    <!-- Search Form -->
-                    <div class="search-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
-                            <button type="submit" class="d-none"></button>
-                        </form>
-                        <!-- Close Icon -->
-                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>    
-    
-    <!-- ##### Header Area End ##### -->
-
-
-
-
-
-    <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
-        <div class="hero-post-slides owl-carousel">
-			<!-- Single Hero Post -->
-            <div class="single-hero-post bg-overlay">
-                <!-- Post Image -->
-                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/sc.png);"></div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Hero Area End ##### -->
-
-
 
     <!-- ##### Blog Area Start ##### -->
     <section class="alazea-blog-area section-padding-100-0">
@@ -184,9 +62,19 @@
                                 <a href="#"><i class="fa fa-user" aria-hidden="true"></i>${v.sdirector}</a>
                             </div>
                             <p class="post-excerpt">${v.ssinopsis}</p>
-                            <div class="welcome-btn-group">
-                                    <a href="#" class="btn alazea-btn mr-30">Mostrar</a>
-                            </div>
+                            <c:choose>
+								<c:when test="${v.bseleccion==true}">
+									<div class="welcome-btn-group">
+                                    	<a href="${pageContext.request.contextPath}/updateEstado?id=${v.idpelicula}&b=false" class="btn btn-danger">Ocultar</a>
+                            		</div>
+								</c:when>
+								<c:when test="${v.bseleccion==false}">
+									<div class="welcome-btn-group">
+                                    	<a href="${pageContext.request.contextPath}/updateEstado?id=${v.idpelicula}&b=true" class="btn btn-success">Mostrar</a>
+                            		</div>
+								</c:when>
+							</c:choose>
+                            
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.capas.Dao.PeliculaDao;
 import com.capas.domain.Pelicula;
@@ -46,6 +47,13 @@ public class PeliculaServiceImpl implements PeliculaService {
 	public Pelicula findOne(Integer id) {
 		// TODO Auto-generated method stub
 		return pr.findById(id).get();
+	}
+
+
+	@Transactional
+	public void UpdateEstado(Integer id, Boolean b) {
+		// TODO Auto-generated method stub
+		pr.UpdateEstado(id, b);
 	}
 
 	

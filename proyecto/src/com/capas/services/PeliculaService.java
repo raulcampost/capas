@@ -11,5 +11,5 @@ public interface PeliculaService {
 	public Pelicula findOne(Integer id);
 	public List<Pelicula> findByBseleccionTrue();
 	public List<Pelicula> find(Integer codigo);
-	
+	public void UpdateEstado(Integer id,Boolean b);
 }
