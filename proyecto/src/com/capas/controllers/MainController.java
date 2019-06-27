@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.capas.domain.Funcion;
+import com.capas.domain.Horario;
 import com.capas.domain.Pelicula;
 import com.capas.services.PeliculaService;
+import com.capsa.DTO.EleccionDTO;
 
 
 @Controller
@@ -34,6 +37,20 @@ public class MainController {
 		return "contact";
 	}
 	
+	@RequestMapping("/comprar")
+	public ModelAndView comprar(@RequestParam("idfuncion") Integer idfuncion,@RequestParam("idpelicula") Integer idpelicula) {
+		ModelAndView mav = new ModelAndView();
+		Funcion fn = ps.buscarfuncion(idpelicula);
+		Horario hr = ps.buscarhorario(idfuncion);
+		Pelicula pl = ps.findOne(idpelicula);
+		mav.addObject("pelicula",pl);
+		mav.addObject("funcion",fn);
+		mav.addObject("horario",hr);
+		mav.setViewName("comprar");
+		
+		return mav;
+	}
+	
 	@RequestMapping("/about")
 	public String about() {
 		return "about";
@@ -43,6 +60,8 @@ public class MainController {
 	public ModelAndView single(@RequestParam("idpelicula") Integer idpelicula) {
 		ModelAndView mav = new ModelAndView();
 		Pelicula pl = ps.findOne(idpelicula);
+		List<Funcion> edto = ps.buscarformato(idpelicula);
+		mav.addObject("id",edto);
 		mav.addObject("pelicula",pl);
 		mav.setViewName("single");
 		return mav;

@@ -21,12 +21,52 @@
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="resources/style.css">
     <link rel="stylesheet" href="resources/style2.css">
+    <script type="text/javascript" src="resources/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="resources/sweetalert/dist/sweetalert.css">
     
     
 
 </head>
 
 <body>
+<script type="text/javascript">
+function out(){
+	swal({
+		type:'warning',
+		title:'Log out',
+		text:'¿Esta seguro de Cerrar Sesion?',
+		showLoaderOnConfirm: true,
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Aceptar',
+		closeOnConfirm: false
+	}, function (isConfirm) {
+		$.ajax({
+			success: function(isConfirm){
+				swal({
+					  title: "Se realizo log out exitosamente!",
+					  text: "Redirecting in 3 seconds...",
+					  type: "success",
+					  showLoaderOnConfirm: true,
+					  timer: 3000,
+					  showConfirmButton: false
+					}, function(){
+					      window.location.href = "http://localhost:8080/proyecto/";
+					});
+				
+			}
+		});
+	
+	});
+	
+}
+</script>
+
+
+
+
+
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>
@@ -68,7 +108,7 @@
                                 </div>
                                 <!-- Login -->
                                 <div class="login">
-                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Sign out</span></a>
+                                    <a href="#" onclick="out()"><i class="fa fa-user" aria-hidden="true" ></i> <span>Sign out</span></a>
                                 </div>
                             </div>
                         </div>
@@ -208,194 +248,29 @@
                     </div>
                 </div>
             </div>
-         </div>
-    </section>
-    <!-- ##### Service Area End ##### -->  
-    
-    
-    
-    <!-- ##### Service Area Start ##### -->
-    <section class="about-us-area  section-padding-100-0">
-        <div class="container">
+            
             <div class="row">
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
-                        <h2>Comprar ticket</h2>
+                        <h2>Elegir Horario</h2>
                     </div>
                 </div>
             </div>
             
-            
-           
             <div class="row justify-content-center ">
-                <div class="col-sm-4">
-                    <div class="alazea-service-area mb-100">
-                    	<form:form id="form1" class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/">
-
-	                        <div class="form-group">
-	                            <label for="ticket" class="col-sm-12 control-label"><b>Cantidad de Pases:</b></label>
-	
-	                            <div class="col-sm-12">
-	                                <input id="ticket" type="number" class="form-control" name="ticket" path="ticket" min="0" min="15" value="0" required="" autofocus="">
-	                                <td><form:errors path="ticket" cssStyle="color: #ff0000;"/></td>
-	                            </div>
-	                        </div>
-	
-	                        <div class="form-group">
-	                            <div class="col-md-8 col-md-offset-4">
-	                                <button type="submit" class="btn btn-primary">
-	                                    Comprar
-	                                </button>
-	                            </div>
-	                        </div>
-	                    </form:form>
-
-                    </div>
-                </div>
+                <div class="col-sm-2"></div>
 
                 <div class="col-sm-8">
                     <div class="alazea-service-area mb-100">
-                        <div class="theatre">
-  
-						  <div class="cinema-seats left">
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						    
-						     <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						     <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						    
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						    
-						    <div class="cinema-row row-1">
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						      <div class="seat"></div>
-						    </div>
-						    
-						  </div>
-						  
-						  
-						  
-						</div>
+                    <c:forEach var="a" items="${id}">
+                       	<a href="${pageContext.request.contextPath}/comprar?idfuncion=${a.idfuncion}&idpelicula=${a.idpelicula}" class="btn btn-info">${a.sformato}</a>
+                    </c:forEach>
                     </div>
                 </div>
+                <div class="col-sm-2"></div>
             </div>
+            
          </div>
     </section>
     <!-- ##### Service Area End ##### -->  
@@ -403,10 +278,8 @@
     
     
     
-    
 
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);margin-top:150px;">
+   <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);margin-top:150px;">
         <!-- Main Footer Area -->
         <div class="main-footer-area">
             <div class="container">
@@ -514,7 +387,7 @@
                     <div class="col-12 col-md-6">
                         <div class="copywrite-text">
                             <p>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							Copyright  All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
                         </div>
@@ -538,10 +411,8 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### All Javascript Files ##### -->
-    <script type="text/javascript" src="resources/js/butaca.js"></script>
     <!-- jQuery-2.2.4 js -->
     <script type="text/javascript" src="resources/js/jquery/jquery-2.2.4.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <!-- Popper js -->
     <script type="text/javascript" src="resources/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->

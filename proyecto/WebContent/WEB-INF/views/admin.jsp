@@ -19,18 +19,166 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="resources/style.css">
+    <script type="text/javascript" src="resources/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="resources/sweetalert/dist/sweetalert.css">
 
 </head>
 
 <body>
-    <!-- Preloader -->
+<script type="text/javascript">
+function out(){
+	swal({
+		type:'warning',
+		title:'Log out',
+		text:'¿Esta seguro de Cerrar Sesion?',
+		showLoaderOnConfirm: true,
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Aceptar',
+		closeOnConfirm: false
+	}, function (isConfirm) {
+		$.ajax({
+			success: function(isConfirm){
+				swal({
+					  title: "Se realizo log out exitosamente!",
+					  text: "Redirecting in 3 seconds...",
+					  type: "success",
+					  showLoaderOnConfirm: true,
+					  timer: 3000,
+					  showConfirmButton: false
+					}, function(){
+					      window.location.href = "http://localhost:8080/proyecto/";
+					});
+				
+			}
+		});
+	
+	});
+	
+}
+</script>
+
+
+
+
+   <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>
         <div class="preloader-img">
-            <img src="resources/img/core-img/camara.png" width="400" height="400" alt="">
+            <img src="resources/img/core-img/leaf.png" alt="">
         </div>
     </div>
 
+      <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: infodeercreative@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +1 234 122 122</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                <!-- Language Dropdown -->
+                                <div class="language-dropdown">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">USA</a>
+                                            <a class="dropdown-item" href="#">UK</a>
+                                            <a class="dropdown-item" href="#">Bangla</a>
+                                            <a class="dropdown-item" href="#">Hindi</a>
+                                            <a class="dropdown-item" href="#">Spanish</a>
+                                            <a class="dropdown-item" href="#">Latin</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="#" onclick="out()"><i class="fa fa-user" aria-hidden="true" ></i> <span>Sign out</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="index.html" class="nav-brand"><img src="resources/img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                </ul>
+
+                                <!-- Search Icon -->
+                                <div id="searchIcon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>    
+    
+    <!-- ##### Header Area End ##### -->
+
+
+
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(resources/img/bg-img/sc.png);">
+
+        </div>
+
+    </div>
 
     <!-- ##### Blog Area Start ##### -->
     <section class="alazea-blog-area section-padding-100-0">

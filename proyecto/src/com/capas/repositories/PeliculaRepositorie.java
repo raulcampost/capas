@@ -18,4 +18,7 @@ public interface PeliculaRepositorie extends JpaRepository<Pelicula,Integer>{
 	@Query(value = "update pelicula set b_seleccion =:b where id_pelicula=:id", nativeQuery = true)
 	public void UpdateEstado(@Param("id") Integer id,@Param("b") Boolean b);
 	
+	
+	
+	
 }

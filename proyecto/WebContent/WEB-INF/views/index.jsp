@@ -19,11 +19,51 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="resources/style.css">
+    <script type="text/javascript" src="resources/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="resources/sweetalert/dist/sweetalert.css">
     
 
 </head>
 
-<body>
+<body id="test">
+<script type="text/javascript">
+function out(){
+	swal({
+		type:'warning',
+		title:'Log out',
+		text:'¿Esta seguro de Cerrar Sesion?',
+		showLoaderOnConfirm: true,
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Aceptar',
+		closeOnConfirm: false
+	}, function (isConfirm) {
+		$.ajax({
+			success: function(isConfirm){
+				swal({
+					  title: "Se realizo log out exitosamente!",
+					  text: "Redirecting in 3 seconds...",
+					  type: "success",
+					  showLoaderOnConfirm: true,
+					  timer: 3000,
+					  showConfirmButton: false
+					}, function(){
+					      window.location.href = "http://localhost:8080/proyecto/";
+					});
+				
+			}
+		});
+	
+	});
+	
+}
+</script>
+
+
+
+
+
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>
@@ -65,7 +105,7 @@
                                 </div>
                                 <!-- Login -->
                                 <div class="login">
-                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Sign out</span></a>
+                                    <a href="#" onclick="out()"><i class="fa fa-user" aria-hidden="true" ></i> <span>Sign out</span></a>
                                 </div>
                             </div>
                         </div>

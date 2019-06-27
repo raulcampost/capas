@@ -21,8 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JpaConfigurations {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean em = new
-		LocalContainerEntityManagerFactoryBean();
+		LocalContainerEntityManagerFactoryBean em = new	LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
 		em.setPersistenceUnitName("cine");
 		em.setPackagesToScan("com.capas.domain");
@@ -34,7 +33,7 @@ public class JpaConfigurations {
 		 return em;
 	 }
 
-	@Bean
+	 @Bean
 	 JpaTransactionManager transactionManager(EntityManagerFactory	entityManagerFactory) {
 		 JpaTransactionManager transactionManager = new JpaTransactionManager();
 		 transactionManager.setEntityManagerFactory(entityManagerFactory);
@@ -55,6 +54,7 @@ public class JpaConfigurations {
 		 Properties properties = new Properties();
 		 properties.setProperty("hibernate.show_sql", "true");
 		 properties.setProperty("hibernate.dialect","org.hibernate.dialect.PostgreSQLDialect");
+		 properties.setProperty("hibernate.enable_lazy_load_no_trans","true");
 		 return properties;
 	}
 }

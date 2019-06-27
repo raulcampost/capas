@@ -1,14 +1,20 @@
 package com.capas.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.capas.Dao.PeliculaDao;
+import com.capas.domain.Funcion;
+import com.capas.domain.Horario;
 import com.capas.domain.Pelicula;
+import com.capas.repositories.FuncionRepositorie;
+import com.capas.repositories.HorarioRepositorie;
 import com.capas.repositories.PeliculaRepositorie;
+import com.capsa.DTO.EleccionDTO;
 
 
 @Service
@@ -19,6 +25,12 @@ public class PeliculaServiceImpl implements PeliculaService {
 	
 	@Autowired
 	public PeliculaRepositorie pr;
+	
+	@Autowired
+	public FuncionRepositorie fr;
+	
+	@Autowired
+	public HorarioRepositorie hr;
 	
 	
 	//este metodo busca todas las peliculas sin restriccion
@@ -54,6 +66,27 @@ public class PeliculaServiceImpl implements PeliculaService {
 	public void UpdateEstado(Integer id, Boolean b) {
 		// TODO Auto-generated method stub
 		pr.UpdateEstado(id, b);
+	}
+
+
+
+	@Override
+	public List<Funcion> buscarformato(Integer id) {
+		// TODO Auto-generated method stub
+		return fr.findByIdpelicula(id);
+	}
+
+	@Override
+	public Funcion buscarfuncion(Integer id) {
+		// TODO Auto-generated method stub
+		return fr.findByIdfuncion(id);
+	}
+	
+	
+	@Override
+	public Horario buscarhorario(Integer id) {
+		// TODO Auto-generated method stub
+		return hr.findByIdfuncion(id);
 	}
 
 	

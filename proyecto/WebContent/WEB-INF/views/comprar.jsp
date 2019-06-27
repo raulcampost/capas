@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,50 +15,103 @@
     <!-- Title -->
     <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
 
-    <!-- Favicon -->
+   <!-- Favicon -->
     <link rel="icon" href="resources/img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="resources/style2.css">
     <script type="text/javascript" src="resources/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="resources/sweetalert/dist/sweetalert.css">
+    
 
 </head>
 
 <body>
 <script type="text/javascript">
 function out(){
-	swal({
-		type:'warning',
-		title:'Log out',
-		text:'¿Esta seguro de Cerrar Sesion?',
-		showLoaderOnConfirm: true,
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Aceptar',
-		closeOnConfirm: false
-	}, function (isConfirm) {
-		$.ajax({
-			success: function(isConfirm){
-				swal({
-					  title: "Se realizo log out exitosamente!",
-					  text: "Redirecting in 3 seconds...",
-					  type: "success",
-					  showLoaderOnConfirm: true,
-					  timer: 3000,
-					  showConfirmButton: false
-					}, function(){
-					      window.location.href = "http://localhost:8080/proyecto/";
-					});
-				
+		swal({
+			type:'warning',
+			title:'Log out',
+			text:'¿Esta seguro de Cerrar Sesion?',
+			showLoaderOnConfirm: true,
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Aceptar',
+			closeOnConfirm: false
+		}, function (isConfirm) {
+			$.ajax({
+				success: function(isConfirm){
+					swal({
+						  title: "Se realizo log out exitosamente!",
+						  text: "Redirecting in 3 seconds...",
+						  type: "success",
+						  showLoaderOnConfirm: true,
+						  timer: 3000,
+						  showConfirmButton: false
+						}, function(){
+						      window.location.href = "http://localhost:8080/proyecto/";
+						});
+					
+				}
+			});
+		
+		});
+		
+	}
+
+
+
+	function transaccion(){
+	
+		//serializeArray convierte a objetos el formulario especificado (un array de tipo llave:valor)
+		var d = $('#form1').serializeArray();
+		
+		//JSON.stringify convierte a Json un objeto javascript
+		var f = JSON.stringify(d);
+		
+		console.log('JSON -> ' + f);
+		
+		swal({
+			type:'warning',
+			title:'Realizar compra',
+			text:'¿Esta seguro de realizar la compra?',
+			showLoaderOnConfirm: true,
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Aceptar',
+			closeOnConfirm: false
+		}, function (isConfirm) {
+			if(isConfirm){
+				$.ajax({
+					url: '${pageContext.request.contextPath}/',
+					type: 'POST',
+					contentType: "application/json; charset=utf-8", //Se enviara JSON al controlador
+					data: f,
+					success: function(data){
+						swal("Exito", "La transaccion fue realizada exitosamente\nFecha Registro: " + 
+								data.fechaRegistro + ", Llave: " + data.llave , "success");
+						//var obj = JSON.parse(data);
+						console.log('Respuesta: ' + data);
+					},
+					error: function(e){
+						swal("Error", "Ocurri\u00f3 un error al realizar el pago", "error");
+					}
+				});
 			}
+		
 		});
 	
-	});
+	}
 	
-}
 </script>
+
+
+
+
+
 
 
     <!-- Preloader -->
@@ -67,7 +122,7 @@ function out(){
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
+      <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
         <!-- ***** Top Header Area ***** -->
@@ -136,8 +191,7 @@ function out(){
                             <div class="classynav">
                                 <ul>
                                     <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-
-                                    <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
+                                    <li><a href="about.html">About</a></li>
                                 </ul>
 
                                 <!-- Search Icon -->
@@ -168,11 +222,12 @@ function out(){
 
 
 
-	 <!-- ##### Breadcrumb Area Start ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
-        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(resources/img/bg-img/24.jpg);">
-            <h2>ABOUT US</h2>
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(resources/img/bg-img/sc.png);">
+
         </div>
 
         <div class="container">
@@ -180,8 +235,8 @@ function out(){
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">About</li>
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> single</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">comprar</li>
                         </ol>
                     </nav>
                 </div>
@@ -189,106 +244,242 @@ function out(){
         </div>
     </div>
     <!-- ##### Breadcrumb Area End ##### -->
+    <!-- ##### Header Area End ##### -->
 
-   
+
+	 <!-- ##### Service Area Start ##### -->
+    <section class="our-services-area bg-gray section-padding-100-0">
+        <div class="container">          
+            
+           
+            <div class="row justify-content-center">
+                <div class="col-4 col-lg-3">
+                    <div class="alazea-service-area mb-100">
+
+                        <!-- Single Service Area -->
+                        <div class="single-service-area d-flex align-items-center wow fadeInUp" data-wow-delay="400ms">
+                            <!-- Icon -->
+                            <div class="col-lg-12">
+                                <img src="${pelicula.ssingular2}" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-5 col-lg-5">
+                   <div class="section-heading text-center">
+                        <h2>${pelicula.stitulo}</h2>
+                        <p>${pelicula.ssinopsis}</p>
+                        <p>Dirigido por: ${pelicula.sdirector}</p>
+                        <p>Formato: ${funcion.sformato}</p>
+                        <p>Horario: ${horario.shora}</p>
+                    </div>
+                </div>
+            </div>
+            
+         </div>
+    </section>
+    <!-- ##### Service Area End ##### -->  
+    
 
 
-    <!-- ##### Team Area Start ##### -->
-    <section class="team-area section-padding-50-0">
+
+
+       
+    
+    <!-- ##### Service Area Start ##### -->
+    <section class="about-us-area  section-padding-100-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
-                        <h2>OUR TEAM</h2>
-                        <p>A team of dedicated experienced professionals.</p>
+                        <h2>Comprar tickets</h2>
                     </div>
                 </div>
             </div>
+            
+            
+           
+            <div class="row justify-content-center ">
+                <div class="col-sm-4">
+                    <div class="alazea-service-area mb-100">
+                    	<form:form id="form1" class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/">
 
-            <div class="row">
+	                        <div class="form-group">
+	                            <label for="ticket" class="col-sm-12 control-label"><b>Cantidad de Pases:</b></label>
+	
+	                            <div class="col-sm-12">
+	                                <input id="ticket" type="number" class="form-control" name="ticket" path="ticket" min="0" min="15" value="0" required="" autofocus="">
+	                            </div>
+	                        </div>
+	
+	                        <div class="form-group">
+	                            <div class="col-md-8 col-md-offset-4">
+	                                <button type="button" class="btn btn-primary" onclick="transaccion()">
+	                                    Comprar
+	                                </button>
+	                            </div>
+	                        </div>
+	                    </form:form>
 
-                <!-- Single Team Member Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-team-member text-center mb-100">
-                        <!-- Team Member Thumb -->
-                        <div class="team-member-thumb">
-                            <img src="resources/img/bg-img/team1.png" alt="">
-                            <!-- Social Info -->
-                            <div class="team-member-social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <!-- Team Member Info -->
-                        <div class="team-member-info mt-30">
-                            <h5>Joseph Corbin</h5>
-                            <p>CEO &amp; Founder</p>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Single Team Member Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-team-member text-center mb-100">
-                        <!-- Team Member Thumb -->
-                        <div class="team-member-thumb">
-                            <img src="resources/img/bg-img/team2.png" alt="">
-                            <!-- Social Info -->
-                            <div class="team-member-social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <!-- Team Member Info -->
-                        <div class="team-member-info mt-30">
-                            <h5>Tasha Deserio</h5>
-                            <p>Garden Designer</p>
-                        </div>
+                <div class="col-sm-8">
+                    <div class="alazea-service-area mb-100">
+                        <div class="theatre">
+  
+						  <div class="cinema-seats left">
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						     <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						     <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						    <div class="cinema-row row-1">
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						      <div class="seat"></div>
+						    </div>
+						    
+						  </div>
+						  
+						  
+						  
+						</div>
                     </div>
                 </div>
-
-                <!-- Single Team Member Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-team-member text-center mb-100">
-                        <!-- Team Member Thumb -->
-                        <div class="team-member-thumb">
-                            <img src="resources/img/bg-img/team3.png" alt="">
-                            <!-- Social Info -->
-                            <div class="team-member-social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <!-- Team Member Info -->
-                        <div class="team-member-info mt-30">
-                            <h5>Cody Baker</h5>
-                            <p>Plan Manager</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
+         </div>
     </section>
-    <!-- ##### Team Area End ##### -->
-
-
-
-
-
-
-
-
+    <!-- ##### Service Area End ##### -->  
+    
+    
+    
+    
+    
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);">
+    <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);margin-top:150px;">
         <!-- Main Footer Area -->
         <div class="main-footer-area">
             <div class="container">
@@ -396,9 +587,9 @@ function out(){
                     <div class="col-12 col-md-6">
                         <div class="copywrite-text">
                             <p>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
+							Copyright  All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
                         </div>
                     </div>
                     <!-- Footer Nav -->
@@ -430,6 +621,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script type="text/javascript" src="resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script type="text/javascript" src="resources/js/active.js"></script>
+    <script type="text/javascript" src="resources/script.js"></script>
+    
 </body>
 
-</html>
