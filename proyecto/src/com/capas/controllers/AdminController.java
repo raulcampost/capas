@@ -33,7 +33,7 @@ public class AdminController {
 	public ModelAndView updateEstado(@RequestParam("id") Integer id,@RequestParam("b") Boolean b,@RequestParam("mensaje") String mensaje) {
 		ModelAndView mav = new ModelAndView();
 		Date fecha = new Date();
-		Reservacion r = new Reservacion("UPDATE",id,mensaje,fecha);
+		Reservacion r = new Reservacion("UPDATE",fecha,null,null,null,null,null,null,null,null,null,2,mensaje);
 		ps.UpdateEstado(id, b);
 		ps.saveadmin(r);
 		List<Pelicula> peliculas = ps.findAll();

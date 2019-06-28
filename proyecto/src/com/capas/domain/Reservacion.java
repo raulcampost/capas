@@ -60,21 +60,11 @@ public class Reservacion {
 	public String smensaje;
 	
 	
-	
-	public Reservacion(String transaccion,Integer id,String mensaje,Date fecha) {
-		// TODO Auto-generated constructor stub
-		this.stransaccion = transaccion;
-		this.id = id;
-		this.smensaje = mensaje;
-		this.fecha = fecha;
-	
-		
-	}
-	
+
 
 	public Reservacion(String stransaccion, Date fecha, String stitulo, String sformato, String shorario,
 			Integer inormal, Integer imovil, Integer isubtotal, Integer icuenta, Integer iremanente, Integer itotal,
-			Integer id) {
+			Integer id, String smensaje) {
 		super();
 		this.stransaccion = stransaccion;
 		this.fecha = fecha;
@@ -88,13 +78,8 @@ public class Reservacion {
 		this.iremanente = iremanente;
 		this.itotal = itotal;
 		this.id = id;
+		this.smensaje = smensaje;
 	}
-
-
-
-
-
-
 
 
 	public String getSmensaje() {

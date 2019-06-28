@@ -81,8 +81,8 @@ public class MainController {
 		Horario hr = ps.buscarhorario(idfuncion);
 		Pelicula pl = ps.findOne(idpelicula);
 		Date fecha = new Date();
-		Reservacion rs = new Reservacion("COMPRA",fecha,pl.getStitulo(),fn.getSformato(),hr.getShora(),hn,hm,sub,cuenta,remanente,total,idfuncion);
-		ps.savecompra(rs);
+		Reservacion r = new Reservacion("COMPRA",fecha,pl.getStitulo(),fn.getSformato(),hr.getShora(),hn,hm,sub,cuenta,remanente,total,3,null);
+		ps.savecompra(r);
 		mav.addObject("pelicula",pl);
 		mav.addObject("funcion",fn);
 		mav.addObject("horario",hr);
