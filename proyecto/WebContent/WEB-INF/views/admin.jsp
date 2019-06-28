@@ -41,7 +41,7 @@ function out(){
 		$.ajax({
 			success: function(isConfirm){
 				swal({
-					  title: "Se realizo log out exitosamente!",
+					  title: "Se realizo sign out exitosamente!",
 					  text: "Redirecting in 3 seconds...",
 					  type: "success",
 					  showLoaderOnConfirm: true,
@@ -55,6 +55,30 @@ function out(){
 		});
 	
 	});
+	
+}
+
+
+
+function mensaje(id,b){
+	
+	swal({
+		  title: "An input!",
+		  text: "Write something interesting:",
+		  type: "input",
+		  showCancelButton: true,
+		  closeOnConfirm: false,
+		  inputPlaceholder: "Write something"
+		}, function (inputValue) {
+		  if (inputValue === false) return false;
+		  if (inputValue === "") {
+		    swal.showInputError("You need to write something!");
+		    return false
+		  }
+		  swal("Nice!", "Se realizo la actualizacion del registro!!! ", "success");
+		  window.location.href = "http://localhost:8080/proyecto/updateEstado?id="+id+"&b="+b+"&mensaje="+inputValue;
+		});
+	
 	
 }
 </script>
@@ -213,12 +237,12 @@ function out(){
                             <c:choose>
 								<c:when test="${v.bseleccion==true}">
 									<div class="welcome-btn-group">
-                                    	<a href="${pageContext.request.contextPath}/updateEstado?id=${v.idpelicula}&b=false" class="btn btn-danger">Ocultar</a>
+                                    	<a href="#" onclick="mensaje('${v.idpelicula}','false')" class="btn btn-danger">Ocultar</a>
                             		</div>
 								</c:when>
 								<c:when test="${v.bseleccion==false}">
 									<div class="welcome-btn-group">
-                                    	<a href="${pageContext.request.contextPath}/updateEstado?id=${v.idpelicula}&b=true" class="btn btn-success">Mostrar</a>
+                                    	<a href="#" onclick="mensaje('${v.idpelicula}','true')" class="btn btn-success">Mostrar</a>
                             		</div>
 								</c:when>
 							</c:choose>

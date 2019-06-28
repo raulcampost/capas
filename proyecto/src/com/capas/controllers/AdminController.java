@@ -1,5 +1,6 @@
 package com.capas.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.capas.domain.Pelicula;
+import com.capas.domain.Reservacion;
 import com.capas.services.PeliculaService;
 
 @Controller
@@ -28,9 +30,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/updateEstado")
-	public ModelAndView updateEstado(@RequestParam("id") Integer id,@RequestParam("b") Boolean b) {
+	public ModelAndView updateEstado(@RequestParam("id") Integer id,@RequestParam("b") Boolean b,@RequestParam("mensaje") String mensaje) {
 		ModelAndView mav = new ModelAndView();
+		Date fecha = new Date();
+		Reservacion r = new Reservacion("UPDATE",id,mensaje,fecha);
 		ps.UpdateEstado(id, b);
+		ps.saveadmin(r);
 		List<Pelicula> peliculas = ps.findAll();
 		mav.addObject("pelicula",peliculas);
 		mav.setViewName("admin");

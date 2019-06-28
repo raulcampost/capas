@@ -209,7 +209,7 @@ function out(){
 
 	
     <!-- ##### Service Area Start ##### -->
-    <section class="our-services-area bg-gray section-padding-100-0">
+    <section class="our-services-area section-padding-100-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -258,7 +258,7 @@ function out(){
                 </div>
             </div>
             
-            <div class="row justify-content-center ">
+            <div class="row justify-content-center " >
                 <div class="col-sm-2"></div>
 
                 <div class="col-sm-8">
@@ -279,7 +279,7 @@ function out(){
     
     
 
-   <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);margin-top:150px;">
+   <footer class="footer-area bg-img" style="background-image: url(resources/img/bg-img/3.jpg);margin-top:100px;">
         <!-- Main Footer Area -->
         <div class="main-footer-area">
             <div class="container">

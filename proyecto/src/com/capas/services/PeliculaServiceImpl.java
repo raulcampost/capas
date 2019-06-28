@@ -1,5 +1,6 @@
 package com.capas.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,10 +12,12 @@ import com.capas.Dao.PeliculaDao;
 import com.capas.domain.Funcion;
 import com.capas.domain.Horario;
 import com.capas.domain.Pelicula;
+import com.capas.domain.Reservacion;
 import com.capas.repositories.FuncionRepositorie;
 import com.capas.repositories.HorarioRepositorie;
 import com.capas.repositories.PeliculaRepositorie;
-import com.capsa.DTO.EleccionDTO;
+import com.capas.repositories.ReservaRepositorio;
+import com.capsa.DTO.RespuestaDTO;
 
 
 @Service
@@ -31,6 +34,9 @@ public class PeliculaServiceImpl implements PeliculaService {
 	
 	@Autowired
 	public HorarioRepositorie hr;
+	
+	@Autowired
+	public ReservaRepositorio rr;
 	
 	
 	//este metodo busca todas las peliculas sin restriccion
@@ -88,6 +94,24 @@ public class PeliculaServiceImpl implements PeliculaService {
 		// TODO Auto-generated method stub
 		return hr.findByIdfuncion(id);
 	}
+
+
+	@Transactional
+	public void savecompra(Reservacion r) {
+		
+		rr.save(r);
+		
+	}
+
+
+	@Transactional
+	public void saveadmin(Reservacion r) {
+		// TODO Auto-generated method stub
+		rr.save(r);
+	}
+
+
+
 
 	
 

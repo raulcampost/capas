@@ -63,46 +63,39 @@ function out(){
 
 
 
-	function transaccion(){
-	
-		//serializeArray convierte a objetos el formulario especificado (un array de tipo llave:valor)
-		var d = $('#form1').serializeArray();
-		
-		//JSON.stringify convierte a Json un objeto javascript
-		var f = JSON.stringify(d);
-		
-		console.log('JSON -> ' + f);
+	function transaccion(titulo,formato,hora,idpelicula,idfuncion){
+		 var x1 = document.getElementById("x1").value;
+		 var v1 = document.getElementById("v1").value;
+		var sub =((x1*2)+(v1*4));
+		var num =0;
+		var rem =0;
+		var total = sub+num+rem;
 		
 		swal({
-			type:'warning',
+			type:'info',
 			title:'Realizar compra',
-			text:'¿Esta seguro de realizar la compra?',
+			text:'¿Esta seguro de realizar la compra?\n\n'
+				+'\nTitulo: ' + titulo 
+				+'\nFormato: ' + formato
+				+'\nHora: ' + hora
+				+'\nAsiento Normal: ' + x1
+				+'\nAsiento Movil: ' + v1
+				+'\nSub Total: ' + sub
+				+'\nCuenta: ' + num
+				+'\nRemanente: ' + rem
+				+'\nTotal: ' + total,
 			showLoaderOnConfirm: true,
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Aceptar',
-			closeOnConfirm: false
-		}, function (isConfirm) {
-			if(isConfirm){
-				$.ajax({
-					url: '${pageContext.request.contextPath}/',
-					type: 'POST',
-					contentType: "application/json; charset=utf-8", //Se enviara JSON al controlador
-					data: f,
-					success: function(data){
-						swal("Exito", "La transaccion fue realizada exitosamente\nFecha Registro: " + 
-								data.fechaRegistro + ", Llave: " + data.llave , "success");
-						//var obj = JSON.parse(data);
-						console.log('Respuesta: ' + data);
-					},
-					error: function(e){
-						swal("Error", "Ocurri\u00f3 un error al realizar el pago", "error");
-					}
-				});
-			}
+			 showLoaderOnConfirm: true
+		},  function (inputValue) {
+			  if (inputValue === false) return false;
+			  swal("Nice!", "Se realizo su compra exitosamente!!! ", "success");
+			  window.location.href = "http://localhost:8080/proyecto/transaccioncompra?hn="+x1+"&hm="+v1+"&sub="+sub+"&cuenta="+num+"&remanente="+rem+"&total="+total+"&idfuncion="+idfuncion+"&idpelicula="+idpelicula;
+			});
 		
-		});
 	
 	}
 	
@@ -282,16 +275,9 @@ function out(){
     </section>
     <!-- ##### Service Area End ##### -->  
     
-
-
-
-
-       
-    
-    <!-- ##### Service Area Start ##### -->
-    <section class="about-us-area  section-padding-100-0">
+   <section class="contact-area section-padding-100-0">
         <div class="container">
-            <div class="row">
+        <div class="row">
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
@@ -299,37 +285,40 @@ function out(){
                     </div>
                 </div>
             </div>
-            
-            
-           
-            <div class="row justify-content-center ">
-                <div class="col-sm-4">
-                    <div class="alazea-service-area mb-100">
-                    	<form:form id="form1" class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/">
-
-	                        <div class="form-group">
-	                            <label for="ticket" class="col-sm-12 control-label"><b>Cantidad de Pases:</b></label>
-	
-	                            <div class="col-sm-12">
-	                                <input id="ticket" type="number" class="form-control" name="ticket" path="ticket" min="0" min="15" value="0" required="" autofocus="">
-	                            </div>
-	                        </div>
-	
-	                        <div class="form-group">
-	                            <div class="col-md-8 col-md-offset-4">
-	                                <button type="button" class="btn btn-primary" onclick="transaccion()">
-	                                    Comprar
-	                                </button>
-	                            </div>
-	                        </div>
-	                    </form:form>
-
+        
+        
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>GET IN TOUCH</h2>
+                        <p>Send us a message, we will call back later</p>
+                    </div>
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area mb-100">
+                        <form action="#" id="form1" method="post">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="x1" value="0" min="0" max="15">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="v1" value="0" min="0" max="15">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="button" class="btn alazea-btn mt-15" 
+                                    onclick="transaccion('${pelicula.stitulo}','${funcion.sformato}','${horario.shora}','${pelicula.idpelicula}','${funcion.idfuncion}')">Comprar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
-                <div class="col-sm-8">
-                    <div class="alazea-service-area mb-100">
-                        <div class="theatre">
+                <div class="col-12 col-lg-6">
+                    <div class="theatre">
   
 						  <div class="cinema-seats left">
 						    <div class="cinema-row row-1">
@@ -466,16 +455,13 @@ function out(){
 						  
 						  
 						</div>
-                    </div>
                 </div>
             </div>
-         </div>
+        </div>
     </section>
-    <!-- ##### Service Area End ##### -->  
-    
-    
-    
-    
+
+
+
     
 
     <!-- ##### Footer Area Start ##### -->
